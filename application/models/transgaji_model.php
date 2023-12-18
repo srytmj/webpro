@@ -3,20 +3,26 @@ class transgaji_model extends CI_Model {
     function simpan_gaji() {
         $nama_pegawai = $this->input->post('pegawai');
         $jumlah_proyek = $this->input->post('jumlah_proyek');
-
+    
         $pegawai_data = $this->db->get_where('pegawai', array('nama_pegawai' => $nama_pegawai))->row_array();
-
+    
+        if ($pegawai_data['status_pegawai'] == 'pegawai tetap') {
+            $gaji_pokok = $pegawai_data['gaji_pokok'];
+        } else {
+            $gaji_pokok = 4000000;
+        }
+    
         // Calculate total gaji
-        $total_gaji = $jumlah_proyek * $pegawai_data['gaji_pokok'];
-
+        $total_gaji = $jumlah_proyek * $gaji_pokok;
+    
         $data_gaji_detail = array(
             'id_pegawai'   => $pegawai_data['id_pegawai'],
-            'gaji_pokok'   => $pegawai_data['gaji_pokok'],
+            'gaji_pokok'   => $gaji_pokok,
             'jumlah_proyek'=> $jumlah_proyek,
             'status'       => $pegawai_data['status_pegawai'],
             'total_gaji'   => $total_gaji,
         );
-
+    
         // Insert data into gaji_detail table
         $this->db->insert('gaji_detail', $data_gaji_detail);
     }
