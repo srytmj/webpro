@@ -7,3 +7,11 @@
     Jenis Dokumen: <input type="text" name="jenis_dokumen" value="<?php echo $penyerahan['jenis_dokumen']; ?>" required><br>
     <button type="submit">Simpan</button>
 </form>
+<button onclick="goBack()">Back</button>
+
+<script>
+function goBack() {
+    // Use the browser's history object to navigate back
+    window.history.back();
+}
+</script>

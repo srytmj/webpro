@@ -15,12 +15,12 @@ class Dashboard extends CI_Controller {
         $data['username'] = $this->session->userdata('username');
 
         // Load view dashboard dengan data
-        $this->load->view('dashboard/dashboard_view', $data);
+        $this->load->view('dashboard/index', $data);
     }
 
-    public function dokumen() {
-        // Akses controller Dokumen
-        redirect('dokumen/search');
-    }
+    // public function dokumen() {
+    //     // Akses controller Dokumen
+    //     redirect('dokumen/search');
+    // }
 }
 ?>

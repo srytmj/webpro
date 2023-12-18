@@ -1,21 +1,21 @@
 <?php
-class gaji extends CI_Controller {
+class Gaji extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
         if (!$this->session->userdata('username')) {
             redirect('auth');
         }
-        $this->load->model(array('gaji_model', 'transgaji_model'));
+        $this->load->model(array('gaji_Model', 'transgaji_Model'));
     }
     function index() {
         if (isset($_POST['submit'])) {
-            $this->transgaji_model->simpan_gaji();
+            $this->transgaji_Model->simpan_gaji();
             redirect('gaji');
         } else {
             $data['tanggal_transaksi'] = date('Y-m-d');
-            $data['pegawai'] = $this->gaji_model->tampil_data();
-            $data['detail'] = $this->transgaji_model->tampil_detail_gaji();
+            $data['pegawai'] = $this->gaji_Model->tampil_data();
+            $data['detail'] = $this->transgaji_Model->tampil_detail_gaji();
             $this->load->view('form_gaji', $data);
         }
     }
@@ -23,7 +23,7 @@ class gaji extends CI_Controller {
 
     function hapusitem() {
         $id = $this->uri->segment(3);
-        $this->transgaji_model->hapusitem($id);
+        $this->transgaji_Model->hapusitem($id);
         redirect('gaji');
     }
 }

@@ -5,10 +5,10 @@ class Penyerahan extends CI_Controller {
     // Fungsi untuk mendapatkan semua penyerahan
     public function index() {
         // Load the model to interact with the database
-        $this->load->model('Penyerahan_model');
+        $this->load->model('Penyerahan_Model');
 
         // Get all dokumen data
-        $data['dokumen'] = $this->Penyerahan_model->get_all_dokumen();
+        $data['dokumen'] = $this->Penyerahan_Model->get_all_dokumen();
 
         // Load the view and pass the data to it
         $this->load->view('dokumen/penyerahan_view', $data);

@@ -1,6 +1,6 @@
 <?php
 
-class gaji_model extends CI_Model {
+class Gaji_Model extends CI_Model {
 function tampil_data() {
     $query = "SELECT p.id_pegawai, p.nama_pegawai, p.status_pegawai, p.gaji_pokok, t.id_pegawai  
         FROM pegawai as p, transaksi as t";

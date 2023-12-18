@@ -2,7 +2,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Penyerahan_model extends CI_Model {
+class Penyerahan_Model extends CI_Model {
     // Fungsi untuk mendapatkan semua dokumen
     public function get_all_dokumen() {
         return $this->db->get('dokumen')->result_array();

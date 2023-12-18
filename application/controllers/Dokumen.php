@@ -6,25 +6,27 @@ class Dokumen extends CI_Controller {
         if (!$this->session->userdata('username')) {
             redirect('auth');
         }
-        $this->load->model('Dokumen_model');
+        $this->load->model('Dokumen_Model');
     }
     public function index() {
-        $data['dokumen'] = $this->Dokumen_model->get_all_dokumen();
+        $data['dokumen'] = $this->Dokumen_Model->get_all_dokumen();
         $this->load->view('dokumen/index', $data);
     }
 
     public function create() {
-        $this->load->view('dokumen/create');
+        $data['clients'] = $this->Dokumen_Model->get_client();
+        $data['pegawais'] = $this->Dokumen_Model->get_pegawai();
+
+        $this->load->view('dokumen/create', $data);
     }
 
     public function save() {
-
-        $id_pegawai = $this->input->post('id_pegawai');
-        $username = $this->input->post('username');
+        $pegawai = $this->input->post('nama_pegawai');
+        $client = $this->input->post('nama_client');
         $tanggal_pengiriman = $this->input->post('tanggal_pengiriman');
         $jenis_dokumen = $this->input->post('jenis_dokumen');
 
-        $this->Dokumen_model->create_dokumen($id_pegawai, $username, $tanggal_pengiriman, $jenis_dokumen);
+        $this->Dokumen_Model->create_dokumen($pegawai, $client, $tanggal_pengiriman, $jenis_dokumen);
 
         redirect('dokumen');
     }
@@ -35,13 +37,13 @@ class Dokumen extends CI_Controller {
         $tgl_pengiriman = $this->input->post('tgl_pengiriman');
         $jenis_dokumen = $this->input->post('jenis_dokumen');
 
-        $this->Dokumen_model->create_dokumen($id_pegawai, $username, $tgl_pengiriman, $jenis_dokumen);
+        $this->Dokumen_Model->create_dokumen($id_pegawai, $username, $tgl_pengiriman, $jenis_dokumen);
 
         redirect('dokumen');
     }
 
     public function edit($id_dokumen) {
-        $data['dokumen'] = $this->Dokumen_model->get_dokumen_by_id($id_dokumen);
+        $data['dokumen'] = $this->Dokumen_Model->get_dokumen_by_id($id_dokumen);
         $this->load->view('dokumen/edit', $data);
     }
 
@@ -52,23 +54,23 @@ class Dokumen extends CI_Controller {
         $tgl_pengiriman = $this->input->post('tgl_pengiriman');
         $jenis_dokumen = $this->input->post('jenis_dokumen');
 
-        $this->Dokumen_model->update_dokumen($id_dokumen, $id_pegawai, $username, $tgl_pengiriman, $jenis_dokumen);
+        $this->Dokumen_Model->update_dokumen($id_dokumen, $id_pegawai, $username, $tgl_pengiriman, $jenis_dokumen);
 
         redirect('dokumen');
     }
 
     public function delete($id_dokumen) {
-        $this->Dokumen_model->delete_dokumen($id_dokumen);
+        $this->Dokumen_Model->delete_dokumen($id_dokumen);
 
         redirect('dokumen');
     }
     public function search() {
         // Ambil username dari sesi
-        $username = $this->session->userdata('username');
+        $client = $this->input->post('nama_client');
 
         // Panggil model untuk mendapatkan dokumen berdasarkan username
-        $data['dokumen'] = $this->Dokumen_model->search_document($username);
-        $data['username'] = $username;
+        $data['dokumen'] = $this->Dokumen_Model->search_document($client);
+        $data['clients'] = $this->Dokumen_Model->get_client();
         
         // Load view untuk menampilkan dokumen
         $this->load->view('dokumen/search', $data);

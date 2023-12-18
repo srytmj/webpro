@@ -1,5 +1,5 @@
 <?php
-class transgaji_model extends CI_Model {
+class Transgaji_Model extends CI_Model {
     function simpan_gaji() {
         $nama_pegawai = $this->input->post('pegawai');
         $jumlah_proyek = $this->input->post('jumlah_proyek');
