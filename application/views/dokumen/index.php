@@ -13,7 +13,7 @@
         <tr>
             <td><?php echo $item['id_dokumen']; ?></td>
             <td><?php echo $item['id_pegawai']; ?></td>
-            <td><?php echo $item['id_client']; ?></td>
+            <td><?php echo $item['username']; ?></td>
             <td><?php echo $item['tgl_pengiriman']; ?></td>
             <td><?php echo $item['jenis_dokumen']; ?></td>
             <td>

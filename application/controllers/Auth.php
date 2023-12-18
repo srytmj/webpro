@@ -12,14 +12,14 @@ class Auth extends CI_Controller {
     }
 
     public function process_login() {
-        $id_client = $this->input->post('id_client');
+        $username = $this->input->post('username');
         // $password = $this->input->post('password');
 
-        $user = $this->auth_model->login($id_client);
+        $user = $this->auth_model->login($username);
 
         if ($user) {
-            // Login berhasil, simpan id_client ke dalam session
-            $this->session->set_userdata('id_client', $user->id_client);
+            // Login berhasil, simpan username ke dalam session
+            $this->session->set_userdata('username', $user->username);
 
             // Redirect ke halaman lain jika diperlukan
             redirect('dashboard');

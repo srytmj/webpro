@@ -3,9 +3,8 @@ class Dokumen extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
-        // Sesuaikan dengan aturan autentikasi yang Anda tetapkan
-        if (!$this->session->userdata('id_client')) {
-            redirect('auth'); // Redirect ke halaman login jika tidak ada sesi
+        if (!$this->session->userdata('username')) {
+            redirect('auth');
         }
         $this->load->model('Dokumen_model');
     }
@@ -21,22 +20,22 @@ class Dokumen extends CI_Controller {
     public function save() {
 
         $id_pegawai = $this->input->post('id_pegawai');
-        $id_client = $this->input->post('id_client');
+        $username = $this->input->post('username');
         $tanggal_pengiriman = $this->input->post('tanggal_pengiriman');
         $jenis_dokumen = $this->input->post('jenis_dokumen');
 
-        $this->Dokumen_model->create_dokumen($id_pegawai, $id_client, $tanggal_pengiriman, $jenis_dokumen);
+        $this->Dokumen_model->create_dokumen($id_pegawai, $username, $tanggal_pengiriman, $jenis_dokumen);
 
         redirect('dokumen');
     }
 
     public function store() {
         $id_pegawai = $this->input->post('id_pegawai');
-        $id_client = $this->input->post('id_client');
+        $username = $this->input->post('username');
         $tgl_pengiriman = $this->input->post('tgl_pengiriman');
         $jenis_dokumen = $this->input->post('jenis_dokumen');
 
-        $this->Dokumen_model->create_dokumen($id_pegawai, $id_client, $tgl_pengiriman, $jenis_dokumen);
+        $this->Dokumen_model->create_dokumen($id_pegawai, $username, $tgl_pengiriman, $jenis_dokumen);
 
         redirect('dokumen');
     }
@@ -49,11 +48,11 @@ class Dokumen extends CI_Controller {
     public function update() {
         $id_dokumen = $this->input->post('id_dokumen');
         $id_pegawai = $this->input->post('id_pegawai');
-        $id_client = $this->input->post('id_client');
+        $username = $this->input->post('username');
         $tgl_pengiriman = $this->input->post('tgl_pengiriman');
         $jenis_dokumen = $this->input->post('jenis_dokumen');
 
-        $this->Dokumen_model->update_dokumen($id_dokumen, $id_pegawai, $id_client, $tgl_pengiriman, $jenis_dokumen);
+        $this->Dokumen_model->update_dokumen($id_dokumen, $id_pegawai, $username, $tgl_pengiriman, $jenis_dokumen);
 
         redirect('dokumen');
     }
@@ -64,12 +63,12 @@ class Dokumen extends CI_Controller {
         redirect('dokumen');
     }
     public function search() {
-        // Ambil id_client dari sesi
-        $id_client = $this->session->userdata('id_client');
+        // Ambil username dari sesi
+        $username = $this->session->userdata('username');
 
-        // Panggil model untuk mendapatkan dokumen berdasarkan id_client
-        $data['dokumen'] = $this->Dokumen_model->search_document($id_client);
-        $data['id_client'] = $id_client;
+        // Panggil model untuk mendapatkan dokumen berdasarkan username
+        $data['dokumen'] = $this->Dokumen_model->search_document($username);
+        $data['username'] = $username;
         
         // Load view untuk menampilkan dokumen
         $this->load->view('dokumen/search', $data);

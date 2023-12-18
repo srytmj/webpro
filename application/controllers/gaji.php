@@ -1,12 +1,13 @@
 <?php
 class gaji extends CI_Controller {
-    function __construct() {
+    public function __construct() {
         parent::__construct();
+        $this->load->library('session');
+        if (!$this->session->userdata('username')) {
+            redirect('auth');
+        }
         $this->load->model(array('gaji_model', 'transgaji_model'));
-        $this->load->helper('formatrp');
-
     }
-
     function index() {
         if (isset($_POST['submit'])) {
             $this->transgaji_model->simpan_gaji();

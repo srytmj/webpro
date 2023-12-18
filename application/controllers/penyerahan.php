@@ -22,10 +22,10 @@ class Penyerahan extends CI_Controller {
     }
 
     // Fungsi untuk membuat penyerahan baru
-    public function create_penyerahan($id_dokumen, $id_client, $tanggal_pengiriman, $jenis_dokumen) {
+    public function create_penyerahan($id_dokumen, $username, $tanggal_pengiriman, $jenis_dokumen) {
         $data = array(
             'id_dokumen' => $id_dokumen,
-            'id_client' => $id_client,
+            'username' => $username,
             'tanggal_pengiriman' => $tanggal_pengiriman,
             'jenis_dokumen' => $jenis_dokumen
         );
@@ -34,10 +34,10 @@ class Penyerahan extends CI_Controller {
     }
 
     // Fungsi untuk mengupdate penyerahan
-    public function update_penyerahan($id_penyerahan, $id_dokumen, $id_client, $tanggal_pengiriman, $jenis_dokumen) {
+    public function update_penyerahan($id_penyerahan, $id_dokumen, $username, $tanggal_pengiriman, $jenis_dokumen) {
         $data = array(
             'id_dokumen' => $id_dokumen,
-            'id_client' => $id_client,
+            'username' => $username,
             'tanggal_pengiriman' => $tanggal_pengiriman,
             'jenis_dokumen' => $jenis_dokumen
         );

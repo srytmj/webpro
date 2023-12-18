@@ -4,10 +4,10 @@ class Dokumen_model extends CI_Model {
         return $this->db->get('dokumen')->result_array();
     }
 
-    public function create_dokumen($id_pegawai, $id_client, $tgl_pengiriman, $jenis_dokumen) {
+    public function create_dokumen($id_pegawai, $username, $tgl_pengiriman, $jenis_dokumen) {
         $data = array(
             'id_pegawai' => $id_pegawai,
-            'id_client' => $id_client,
+            'username' => $username,
             'tgl_pengiriman' => $tgl_pengiriman,
             'jenis_dokumen' => $jenis_dokumen
         );
@@ -19,10 +19,10 @@ class Dokumen_model extends CI_Model {
         return $this->db->get_where('dokumen', array('id_dokumen' => $id_dokumen))->row_array();
     }
 
-    public function update_dokumen($id_dokumen, $id_pegawai, $id_client, $tgl_pengiriman, $jenis_dokumen) {
+    public function update_dokumen($id_dokumen, $id_pegawai, $username, $tgl_pengiriman, $jenis_dokumen) {
         $data = array(
             'id_pegawai' => $id_pegawai,
-            'id_client' => $id_client,
+            'username' => $username,
             'tgl_pengiriman' => $tgl_pengiriman,
             'jenis_dokumen' => $jenis_dokumen
         );
@@ -36,9 +36,9 @@ class Dokumen_model extends CI_Model {
         $this->db->delete('dokumen');
     }
     
-    public function search_document($id_client) {
+    public function search_document($username) {
         // Sesuaikan dengan struktur tabel dan kolom pada database Anda
-        $this->db->where('id_client', $id_client);
+        $this->db->where('username', $username);
         $query = $this->db->get('dokumen');
 
         return $query->result();

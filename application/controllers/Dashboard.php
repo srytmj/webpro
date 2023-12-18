@@ -5,14 +5,14 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         // Sesuaikan dengan aturan autentikasi yang Anda tetapkan
-        if (!$this->session->userdata('id_client')) {
+        if (!$this->session->userdata('username')) {
             redirect('auth'); // Redirect ke halaman login jika tidak ada sesi
         }
     }
 
     public function index() {
-        // Ambil data id_client dari sesi
-        $data['id_client'] = $this->session->userdata('id_client');
+        // Ambil data username dari sesi
+        $data['username'] = $this->session->userdata('username');
 
         // Load view dashboard dengan data
         $this->load->view('dashboard/dashboard_view', $data);

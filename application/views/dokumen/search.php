@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h2>Search Results for ID <?php echo $id_client; ?> </h2>
+<h2>Search Results for ID <?php echo $username; ?> </h2>
 <table>
 <?php if (!empty($dokumen)) : ?>
         <tr>

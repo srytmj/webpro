@@ -5,11 +5,17 @@
 </head>
 <body>
 
-<h2>Welcome, <?php echo $id_client; ?>!</h2>
+<h2>Welcome, <?php echo $username; ?>!</h2>
 
-<!-- Tambahkan menu atau tautan ke halaman lain di sini -->
+<h1>Dokumen</h1>
+<a href="<?php echo base_url('index.php/dokumen/search'); ?>">Search</a><br>
+<a href="<?php echo base_url('index.php/dokumen/create'); ?>">Create</a><br>
+<a href="<?php echo base_url('index.php/dokumen/index'); ?>">Index</a><br>
 
-<a href="<?php echo base_url('index.php/dokumen/search'); ?>">Dokumen</a>
+<h1>Gaji</h1>
+<a href="<?php echo base_url('index.php/gaji'); ?>">Index</a><br>
+<br><br>
+<a href="<?php echo base_url('index.php/auth/logout'); ?>">Logout</a>
 
 </body>
 </html>
