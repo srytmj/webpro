@@ -32,7 +32,7 @@ class Auth extends CI_Controller {
     public function logout() {
         // Hapus session dan redirect ke halaman login
         $this->session->sess_destroy();
-        redirect('auth');
+        redirect();
     }
 }
 ?>
