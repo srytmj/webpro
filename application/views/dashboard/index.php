@@ -9,8 +9,12 @@
 <h1>Master Data</h1>
 
 <a href="<?php echo base_url('index.php/coa'); ?>">COA</a><br>
+
+<h1>Pemesanan</h1>
+<a href="<?php echo base_url('index.php/Pemesanan'); ?>">Index</a><br>
+
 <h1>Transaksi</h1>
-<a href="<?php echo base_url('index.php/Transaksi'); ?>">Search</a><br>
+<a href="<?php echo base_url('index.php/Transaksi'); ?>">Index</a><br>
 
 <h1>Dokumen</h1>
 <a href="<?php echo base_url('index.php/dokumen/search'); ?>">Search</a><br>
